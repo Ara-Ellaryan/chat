@@ -22,5 +22,5 @@ create table messages
     message     text            not null,
     created_at  timestamp       not null default now(),
     constraint users_messages_sender_id_fk foreign key (sender_id) references users (id),
-    constraint users_messages_receiver_id_fk foreign key (receiver_id) references users (id),
+    constraint users_messages_receiver_id_fk foreign key (receiver_id) references users (id)
 );
