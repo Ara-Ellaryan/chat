@@ -31,7 +31,7 @@ public class LoginUserServlet extends BaseUserServlet {
                 if (optionalUser.isPresent()) {
                     user = optionalUser.get();
                     req.getSession().setAttribute("user", user);
-                    resp.sendRedirect("/home");
+                    resp.sendRedirect("home");
                     return;
                 }
             }

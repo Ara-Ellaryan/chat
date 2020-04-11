@@ -39,7 +39,7 @@ public class RegisterUserServlet extends BaseUserServlet {
                     InputStream imageStream = DataValidator.isEmpty(validator.getFileItems()) ? null : validator.getFileItems().get(0).getInputStream();
                     this.usersService.add(user, imageStream);
                     req.getSession().setAttribute("registered", "");
-                    resp.sendRedirect("/login");
+                    resp.sendRedirect("login");
                     return;
                 } else {
                     req.setAttribute("userExist", String.format("User with emаil = %s already exist", user.getEmail()));
