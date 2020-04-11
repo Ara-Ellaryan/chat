@@ -1,0 +1,14 @@
+.footer {
+    background-color: #273437;
+    position: relative;
+    grid-area: footer;
+    padding: 1em;
+}
+
+.footer > span {
+    color: antiquewhite;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}

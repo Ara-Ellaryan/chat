@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: #d6ffd0;
+    display: grid;
+    grid-template: "header" "main" "footer";
+    grid-template-columns: 100%;
+    grid-template-rows: 100px 1fr 100px;
+    min-height: 100vh;
+}
+
+/* ------------------------- start header part -------------------------------------------- */
+
+.header {
+    background-color: #273437;
+    grid-area: header;
+
+    position: relative;
+}
+
+.header-wrapper {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 75px 25px;
+}
+
+.logo {
+    padding: 1em;
+    font-size: 30px;
+    font-style: italic;
+    color: aliceblue;
+}
+
+.main {
+    grid-area: main;
+    position: relative;
+}

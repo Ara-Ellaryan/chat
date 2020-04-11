@@ -1,0 +1,47 @@
+.main-login-reg {
+    padding: 1em 0;
+    position: relative;
+    margin: 0 auto;
+    min-height: 100%;
+}
+
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    padding: 2em;
+    background-color: #beded2;
+    border-radius: 10px;
+    border-color: #bbde94;
+    text-align: left;
+}
+
+.input {
+    margin: 5px 0;
+    border: 0;
+}
+
+#submit {
+    margin: 5px 0;
+    padding: 3px;
+    border: 0;
+}
+
+.error {
+    color: red;
+    font-style: italic;
+    font-size: smaller;
+}
+
+.navto {
+    margin-left: 1em;
+    color: black;
+}
+
+.successLogin {
+    width: 100%;
+    color: blue;
+    font-size: larger;
+    text-align: center;
+}
