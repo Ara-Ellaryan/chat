@@ -113,11 +113,11 @@ public class RegisterUserServlet extends BaseUserServlet {
             request.setAttribute("errorEmail", "Email is required!");
             hasError = true;
         } else if (!DataValidator.isValidEmail(email)){
-            request.setAttribute("errorEmial", "Wrong email format!");
+            request.setAttribute("errorEmail", "Wrong email format!");
             hasError = true;
         }
         if(DataValidator.isNullOrBlank(password)){
-            request.setAttribute("password", "Password is required!");
+            request.setAttribute("errorPassword", "Password is required!");
             hasError = true;
         } else if (DataValidator.isNullOrBlank(confirmPassword) || !password.equals(confirmPassword)){
             request.setAttribute("errorConfirmPassword", "Passwords doesn`t match!");

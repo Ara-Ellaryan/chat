@@ -28,7 +28,9 @@ public class LoginUserServlet extends BaseUserServlet {
             if (!validator.hasError()) {
                 User user = validator.getValue();
                 Optional<User> optionalUser = this.usersService.get(user.getEmail(), user.getPassword());
-                if (optionalUser.isPresent()) {
+                if (!optionalUser.isPresent()){
+                    req.setAttribute("wrongEmailPassword", "Wrong email or password!");
+                } else  {
                     user = optionalUser.get();
                     req.getSession().setAttribute("user", user);
                     resp.sendRedirect("home");
