@@ -40,7 +40,7 @@ function doRegister() {
         }
     }
 
-    if (isOk) {
+    if (isOk){
         $('#register-form').submit();
     }
 }

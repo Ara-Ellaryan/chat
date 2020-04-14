@@ -53,7 +53,7 @@ public class LoginUserServlet extends BaseUserServlet {
         if (DataValidator.isNullOrBlank(email)) {
             request.setAttribute("errorEmail", "Email is required!");
             hasError = true;
-        } else if (DataValidator.isValidEmail(email)) {
+        } else if (!DataValidator.isValidEmail(email)) {
             request.setAttribute("errorEmail", "Wrong email format!");
             hasError = true;
         }

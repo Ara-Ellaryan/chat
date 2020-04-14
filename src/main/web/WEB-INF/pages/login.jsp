@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <header class="header">
-        <div class="headerWrapper">
+        <div class="header-wrapper">
             <div class="logo">
                 <span>Logo</span>
             </div>
@@ -20,7 +20,15 @@
     </header>
     <main class="main">
         <div class="main-login-reg">
+
             <form id="login-form" class="form login" method="post" action="/login">
+                <c:if test="${sessionScope.registered != null}">
+                    <p  class="successLogin">Success registration!!!</p>
+                    <c:remove var="registered" scope="session"/>
+                </c:if>
+                <c:if test="${requestScope.globalError != null}">
+                    <p class="global-error">Server can't process your request, Please try again!</p>
+                </c:if>
                 <span class="error"><c:out value="${requestScope.wrongEmailPassword == null ? '' : requestScope.wrongEmailPassword}"/></span>
                 <label for="input-email" class="label">Email:</label>
                 <span id="input-email-span" class="error"><c:out value="${requestScope.errorEmail == null ? '' : requestScope.errorEmail}"/></span><br>
@@ -30,7 +38,7 @@
                 <span id="input-password-span" class="error"><c:out value="${requestScope.errorPassword == null ? '' : requestScope.errorPassword}"/></span><br>
                 <input id="input-password" class="input" type="password" name="password"><br>
 
-                <button id="submit" onclick="doLogin()">Login</button>
+                <button id="form-button" onclick="doLogin()">Login</button>
                 <a class="navto" href="/register">-Create an account-</a>
             </form>
         </div>

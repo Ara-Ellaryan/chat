@@ -1,3 +1,4 @@
+<%@ page import="am.home.chat.utils.DataValidator" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -12,7 +13,7 @@
 <body>
 <div class="container">
     <header class="header">
-        <div class="headerWrapper">
+        <div class="header-wrapper">
             <div class="logo">
                 <span>Logo</span>
             </div>
@@ -20,32 +21,50 @@
     </header>
     <main class="main">
         <div class="main-login-reg">
+            <c:if test="${requestScope.globalError != null}">
+                <p class="global-error">Server can't process your request, Please try again!</p>
+            </c:if>
             <form id="register-form" class="form" method="post" action="/register" enctype="multipart/form-data">
                 <label for="input-name" class="label">FirstName:</label>
-                <span id="input-name-span" class="error"><c:out value="${requestScope.errorName == null ? '' : requestScope.errorName}"/></span><br>
-                <input id="input-name" class="input" type="text" name="name" value="" placeholder="for ex. Jhon" ><br>
+                <span id="input-name-span" class="error">
+                    <c:out value="${requestScope.errorName ? '' : requestScope.errorName}"/>
+                </span><br>
+                <input id="input-name" class="input" type="text" name="name" value="<c:out value="${param.name == null ? '' : param.name}" />"
+                       placeholder="for ex. Jhon"><br>
 
                 <label for="input-surname" class="label">LastName:</label>
-                <span id="input-surname-span" class="error"><c:out value="${requestScope.errorSurname == null ? '' : requestScope.errorSurname}"/></span><br>
-                <input id="input-surname" class="input" type="text" name="surname" value="" placeholder="for ex. Smith" ><br>
+                <span id="input-surname-span" class="error">
+                    <c:out value="${requestScope.errorSurname == null ? '' : requestScope.errorSurname}"/>
+                </span><br>
+                <input id="input-surname" class="input" type="text" name="surname" value="<c:out value="${param.surname == null ? '' : param.surname}"/>"
+                       placeholder="for ex. Smith"><br>
 
                 <label for="input-email" class="label">Email:</label>
-                <span id="input-email-span" class="error"><c:out value="${requestScope.errorEmail == null ? '' : requestScope.errorEmail}"/></span><br>
-                <input id="input-email" class="input" type="text" name="email" value="" placeholder="for ex. JhonSmith@email.com" ><br>
+                <span id="input-email-span" class="error">
+                    <c:out value="${requestScope.errorEmail == null ? '' : requestScope.errorEmail}"/>
+                </span><br>
+                <input id="input-email" class="input" type="text" name="email" value="<c:out value="${param.email == null ? '' : param.email}"/>"
+                       placeholder="for ex. JhonSmith@email.com"><br>
 
                 <label for="input-password" class="label">Password:</label>
-                <span id="input-password-span" class="error"><c:out value="${requestScope.errorPassword == null ? '' : requestScope.errorPassword}"/></span><br>
-                <input id="input-password" class="input" type="password" name="password" placeholder="min 8 character" ><br>
+                <span id="input-password-span" class="error">
+                    <c:out value="${requestScope.errorPassword == null ? '' : requestScope.errorPassword}"/>
+                </span><br>
+                <input id="input-password" class="input" type="password" name="password" placeholder="min 8 character"><br>
 
                 <label for="input-confirmPassword" class="label">Confirm password:</label>
-                <span id="input-confirmPassword-span" class="error"><c:out value="${requestScope.errorConfirmPassword == null ? '' : requestScope.errorConfirmPassword}"/></span><br>
-                <input id="input-confirmPassword" class="input" type="password" name="confirmPassword" ><br>
+                <span id="input-confirmPassword-span" class="error">
+                    <c:out value="${requestScope.errorConfirmPassword == null ? '' : requestScope.errorConfirmPassword}"/>
+                </span><br>
+                <input id="input-confirmPassword" class="input" type="password" name="confirmPassword"><br>
 
                 <label for="input-file" class="input-file-label">Choose profile picture</label>
                 <input id="input-file" type="file" name="file" accept="image/*"><br>
 
-                <button id="submit" onclick="doRegister()">Creat</button>
-                <span class="error"><c:out value="${requestScope.userExist == null ? '' : requestScope.userExist}"/></span>
+                <button id="form-button" onclick="doRegister()">Creat</button>
+                <span class="error">
+                    <c:out value="${requestScope.userExist == null ? '' : requestScope.userExist}"/>
+                </span>
                 <a class="navto" href="/login">-LOG IN-</a>
             </form>
         </div>

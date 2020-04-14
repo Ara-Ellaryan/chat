@@ -124,13 +124,13 @@
     margin-bottom: 1em;
 }
 
-.from {
+.sender {
     width: 100%;
     color: #1832de;
     text-align: right;
 }
 
-.to {
+.receiver {
     width: 100%;
     color: #1e7d0b;
     text-align: left;

@@ -1,6 +1,5 @@
 package am.home.chat.servlets.users;
 
-import am.home.chat.exceptions.DatabaseException;
 import am.home.chat.models.Message;
 import am.home.chat.models.User;
 
@@ -19,11 +18,11 @@ public class HomeServlet extends BaseUserServlet {
         try {
             User user = (User)req.getSession().getAttribute("user");
             List<User> users = this.usersService.getAllUsers();
-            List<Message> messages = this.messagesService.getAllMessages(user.getId(), users.get(0).getId());
+            List<Message> messages = this.messagesService.getAllMessages(user.getId(), user.getId());
 
             req.setAttribute("users", users);
             req.setAttribute("messages", messages);
-            req.getRequestDispatcher("WEB-INF/pages/home.jsp");
+            req.getRequestDispatcher("WEB-INF/pages/home.jsp").forward(req, resp);
 
         } catch (Exception e) {
             e.printStackTrace();
