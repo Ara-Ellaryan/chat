@@ -20,12 +20,18 @@
             </div>
             <nav class="nav">
                 <div id = "search-form">
-                    <input id="user-search" type="text" name="email"  placeholder="ex. jhon@mail.ru">
-                    <button id="search-button" onclick="userSearch()">search</button>
-                    <span id="search-error"></span>
+                    <div class="user-search-input-wrapper">
+                        <input id="user-search" type="text" name="email"  placeholder="ex. jhon@mail.ru">
+                    </div>
+                    <div>
+                        <img id="search-button" src="/images/icon/icon_search.png" onclick="userSearch()"/>
+                    </div>
                 </div>
                 <div ></div>
-                <div><span id="current-user"><c:out value="${sessionScope.user.name.concat(' ').concat(sessionScope.user.surname)}"/></span></div>
+                <div class="current-user-bar-wrapper">
+                    <span id="current-user"><c:out value="${sessionScope.user.name.concat(' ').concat(sessionScope.user.surname)}"/></span>
+                    <img id="user-menu-list" src="/images/icon/menu_icon.png" onclick="openMenuList()">
+                </div>
                 <div><a id="logout" href="/logout">logout</a></div>
             </nav>
         </div>
@@ -34,8 +40,10 @@
         <div class="main-wrapper">
             <aside class="aside">
 
-                <div id="find-user">
-                    <span class="friend"></span>
+                <div class="current-user-block">
+                    <img src="">
+                    <span class=""></span>
+                    <span></span>
                 </div>
                 <ul class="user-list">
                     <li id="">
