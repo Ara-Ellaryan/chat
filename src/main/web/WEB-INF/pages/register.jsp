@@ -29,22 +29,22 @@
                 <span id="input-name-span" class="error">
                     <c:out value="${requestScope.errorName ? '' : requestScope.errorName}"/>
                 </span><br>
-                <input id="input-name" class="input" type="text" name="name" value="<c:out value="${param.name == null ? '' : param.name}" />"
-                       placeholder="for ex. Jhon"><br>
+                <input id="input-name" class="input" type="text" name="name" placeholder="for ex. Jhon"
+                       value="<c:out value="${DataValidator.isNullOrBlank(requestScope.name) ? '' : requestScope.name}" />"><br>
 
                 <label for="input-surname" class="label">LastName:</label>
                 <span id="input-surname-span" class="error">
                     <c:out value="${requestScope.errorSurname == null ? '' : requestScope.errorSurname}"/>
                 </span><br>
-                <input id="input-surname" class="input" type="text" name="surname" value="<c:out value="${param.surname == null ? '' : param.surname}"/>"
-                       placeholder="for ex. Smith"><br>
+                <input id="input-surname" class="input" type="text" name="surname" placeholder="for ex. Smith"
+                       value="<c:out value="${DataValidator.isNullOrBlank(requestScope.surname) ? '' : requestScope.surname}"/>"><br>
 
                 <label for="input-email" class="label">Email:</label>
                 <span id="input-email-span" class="error">
                     <c:out value="${requestScope.errorEmail == null ? '' : requestScope.errorEmail}"/>
                 </span><br>
-                <input id="input-email" class="input" type="text" name="email" value="<c:out value="${param.email == null ? '' : param.email}"/>"
-                       placeholder="for ex. JhonSmith@email.com"><br>
+                <input id="input-email" class="input" type="text" name="email"  placeholder="for ex. JhonSmith@email.com"
+                       value="<c:out value="${DataValidator.isNullOrBlank(requestScope.email) ? '' : requestScope.email}"/>"><br>
 
                 <label for="input-password" class="label">Password:</label>
                 <span id="input-password-span" class="error">

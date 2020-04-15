@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Home</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="/css/header.css">
     <link rel="stylesheet" type="text/css" href="/css/chat.css">
     <link rel="stylesheet" type="text/css" href="/css/footer.css">
@@ -10,26 +11,29 @@
     <script type="text/javascript" src="/js/chat.js"></script>
 </head>
 <body>
+<div id="current-user-id" user-id="<c:out value="${sessionScope.user.id}"/>" hidden="hidden"></div>
 <div class="container">
     <header class="header">
         <div class="header-wrapper">
             <div class="logo">
                 <span>Logo</span>
             </div>
-            <div class="nav">
-                <span id="current-user"><c:out value="${sessionScope.user.name.concat(' ').concat(sessionScope.user.surname)}"/></span>
-                <a id="logout" href="/logout">logout</a>
-            </div>
-        </div>
-    </header>
-    <main class="main">girw
-        <div class="main-wrapper">
-            <aside class="aside">
+            <nav class="nav">
                 <div id = "search-form">
                     <input id="user-search" type="text" name="email"  placeholder="ex. jhon@mail.ru">
                     <button id="search-button" onclick="userSearch()">search</button>
                     <span id="search-error"></span>
                 </div>
+                <div ></div>
+                <div><span id="current-user"><c:out value="${sessionScope.user.name.concat(' ').concat(sessionScope.user.surname)}"/></span></div>
+                <div><a id="logout" href="/logout">logout</a></div>
+            </nav>
+        </div>
+    </header>
+    <main class="main">
+        <div class="main-wrapper">
+            <aside class="aside">
+
                 <div id="find-user">
                     <span class="friend"></span>
                 </div>

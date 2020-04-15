@@ -9,7 +9,7 @@
     display: grid;
     grid-template: "header" "main" "footer";
     grid-template-columns: 100%;
-    grid-template-rows: 100px 1fr 100px;
+    grid-template-rows: 110px 1fr 100px;
     min-height: 100vh;
 }
 
@@ -24,11 +24,11 @@
 .header-wrapper {
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 75px 25px;
+    grid-template-rows: 75px 35px;
 }
 
 .logo {
-    padding: 1em;
+    padding: 10px;
     font-size: 30px;
     font-style: italic;
     color: aliceblue;
