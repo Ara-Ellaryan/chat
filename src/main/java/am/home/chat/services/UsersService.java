@@ -17,6 +17,8 @@ public interface UsersService {
 
     Optional<User> get(String email, String password) throws DatabaseException;
 
+    Optional<User> get(String email) throws DatabaseException;
+
     boolean userExist(String email) throws DatabaseException;
 
     List<User> getAllUsers() throws DatabaseException;

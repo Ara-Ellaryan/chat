@@ -1,7 +1,8 @@
-package am.home.chat.servlets.users;
+package am.home.chat.servlets.pages;
 
 import am.home.chat.models.Message;
 import am.home.chat.models.User;
+import am.home.chat.servlets.users.BaseUserServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet(urlPatterns = {"/home", ""})
-public class HomeServlet extends BaseUserServlet {
+public class HomeServlet extends BasePagesServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

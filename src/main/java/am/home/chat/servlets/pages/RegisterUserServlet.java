@@ -1,6 +1,7 @@
-package am.home.chat.servlets.users;
+package am.home.chat.servlets.pages;
 
 import am.home.chat.models.User;
+import am.home.chat.servlets.users.BaseUserServlet;
 import am.home.chat.servlets.validator.RequestValidator;
 import am.home.chat.utils.DataValidator;
 import am.home.chat.utils.EncryptionUtil;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/register")
-public class RegisterUserServlet extends BaseUserServlet {
+public class RegisterUserServlet extends BasePagesServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("WEB-INF/pages/register.jsp").forward(req, resp);

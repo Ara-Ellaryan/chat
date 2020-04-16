@@ -15,6 +15,8 @@ public interface UsersDao {
 
     Optional<User> fetch(String email, String password) throws SQLException;
 
+    Optional<User> fetch(String email) throws SQLException;
+
     boolean userExist(String email) throws SQLException;
 
     List<User> fetchAll() throws SQLException;

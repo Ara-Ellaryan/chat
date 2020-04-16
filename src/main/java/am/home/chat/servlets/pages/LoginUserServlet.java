@@ -1,7 +1,8 @@
-package am.home.chat.servlets.users;
+package am.home.chat.servlets.pages;
 
 import am.home.chat.exceptions.DatabaseException;
 import am.home.chat.models.User;
+import am.home.chat.servlets.users.BaseUserServlet;
 import am.home.chat.servlets.validator.RequestValidator;
 import am.home.chat.utils.DataValidator;
 import am.home.chat.utils.EncryptionUtil;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 @WebServlet("/login")
-public class LoginUserServlet extends BaseUserServlet {
+public class LoginUserServlet extends BasePagesServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("WEB-INF/pages/login.jsp").forward(req, resp);

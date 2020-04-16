@@ -83,6 +83,15 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public Optional<User> get(String email) throws DatabaseException {
+        try {
+            return this.usersDao.fetch(email);
+        } catch (SQLException e) {
+            throw new DatabaseException(e);
+        }
+    }
+
+    @Override
     public boolean userExist(String email) throws DatabaseException {
         try {
             return this.usersDao.userExist(email);

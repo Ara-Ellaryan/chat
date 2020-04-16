@@ -17,7 +17,7 @@
     align-items: center;
 }
 
-.user-search-input-wrapper{
+.user-search-input-wrapper {
     width: 100%;
     padding: 0 15px;
 }
@@ -37,16 +37,16 @@
     cursor: pointer;
 }
 
-.current-user-bar-wrapper{
-   justify-self: end;
+.current-user-bar-wrapper {
+    justify-self: end;
     padding-right: 10px;
 }
 
-#current-user{
-margin-right: 10px;
+#current-user {
+    margin-right: 10px;
 }
 
-#user-menu-list{
+#user-menu-list {
     display: inline-block;
     width: 10%;
     cursor: pointer;
@@ -58,9 +58,11 @@ margin-right: 10px;
     color: aliceblue;
     text-decoration: none;
 }
+
 /* ------------------------- end header part -------------------------------------------- */
 
 /* ------------------------- start main part -------------------------------------------- */
+/* ------------------------- start aside -------------------------------------------- */
 
 .main-wrapper {
     height: 100%;
@@ -74,30 +76,102 @@ margin-right: 10px;
 }
 
 
-
 .current-user-block {
     width: 100%;
     display: grid;
-    grid-template-columns: 2fr 8fr 1fr;
-    grid-auto-rows: 60px;
+    grid-template-columns: 1fr 3fr;
+    grid-auto-rows: 80px;
+    justify-items: center;
+    align-items: center;
     font-style: italic;
-    font-family: sans-serif;
     background-color: #d6ffd0;
+    cursor: pointer;
+}
+
+.current-user-image {
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+    position: relative;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #353835;
+    border-radius: 50%;
+}
+
+.user-activity {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+.current-place {
+    bottom: 10px;
+    right: 10px;
+}
+
+.active {
+    background-color: #3be519;
+}
+
+.passive {
+    background-color: #524040;
+}
+
+.current-user-name {
+    justify-self: baseline;
+    font-family: cursive;
+    font-style: italic;
+    font-size: 19px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.contacts {
+    width: 100%;
+    margin-top: 15px;
 }
 
 .user-list {
     list-style: none;
-    color: #1383de;
-    font-style: italic;
-    font-family: sans-serif;
+    overflow-y: scroll;
 }
 
-.user-list > li {
+.contact {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-auto-rows: 60px;
+    justify-items: center;
+    align-items: center;
+    cursor: pointer;
     margin: 5px 0;
 }
 
-.friend {
-    cursor: pointer;
+.user-image {
+    width: 60px;
+    height: 60px;
+    padding: 5px;
+    position: relative;
+}
+
+.contact-place {
+    bottom: 10px;
+    right: 6px;
+}
+
+.user-name {
+    justify-self: baseline;
+    font-family: cursive;
+    font-size: 17px;
+    font-style: italic;
+    font-weight: bold;
+    color: #1383de;
+    margin-left: 10px;
 }
 
 .user-selected {
@@ -105,8 +179,30 @@ margin-right: 10px;
     padding-left: 1em;
 }
 
+/* ------------------------- end aside -------------------------------------------- */
+
+/* ------------------------- end section -------------------------------------------- */
 .section {
     padding: 1em;
+}
+
+.chat-contact {
+    width: 100%;
+    padding: 5px;
+    background-color: #a0de9f;
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    grid-auto-rows: 70px;
+    grid-column-gap: 15px;
+    align-items: center;
+}
+
+.chat-user-name {
+    display: block;
+    padding-left: 15px;
+    font-size: 24px;
+    font-family: "Roboto Light";
+    font-weight: bold;
 }
 
 .chat-box {
@@ -120,6 +216,23 @@ margin-right: 10px;
     margin-bottom: 1em;
     overflow-y: scroll;
     padding: 1em;
+}
+
+.message-text-wrapper{
+    width: 80%;
+    margin: 15px;
+}
+
+.sender {
+    color: #1832de;
+    text-align: right;
+    float: right;
+}
+
+.receiver {
+    color: #1e7d0b;
+    text-align: left;
+    float: left;
 }
 
 .message-text {
@@ -144,17 +257,9 @@ margin-right: 10px;
     margin-bottom: 1em;
 }
 
-.sender {
-    width: 100%;
-    color: #1832de;
-    text-align: right;
-}
 
-.receiver {
-    width: 100%;
-    color: #1e7d0b;
-    text-align: left;
-}
+
+
 
 #button {
     width: 50px;

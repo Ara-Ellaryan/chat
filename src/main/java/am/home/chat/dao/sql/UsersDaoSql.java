@@ -69,6 +69,24 @@ public class UsersDaoSql extends BaseSQL implements UsersDao {
     }
 
     @Override
+    public Optional<User> fetch(String email) throws SQLException {
+        String query = "SELECT * FROM users WHERE email = ?;";
+        User user = null;
+
+        try(Connection connection = this.connectionFactory.getConnection();
+        PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, email);
+
+            try(ResultSet resultSet = statement.executeQuery()) {
+                if(resultSet.next()){
+                    user = createFromResult(resultSet);
+                }
+            }
+        }
+        return user == null ? Optional.empty() : Optional.of(user);
+    }
+
+    @Override
     public boolean userExist(String email) throws SQLException {
         String query = "SELECT * FROM users WHERE email = ?;";
 
