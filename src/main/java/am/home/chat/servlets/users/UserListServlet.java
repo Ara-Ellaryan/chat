@@ -32,7 +32,7 @@ public class UserListServlet extends BaseUserServlet {
             for (User user : users) {
                 UserView userView = new UserView();
                 userView.id = user.getId();
-                userView.fullName = user.getName() + user.getSurname();
+                userView.fullName = user.getName() + " " + user.getSurname();
                 userView.imageUrl = user.getImageUrl();
                 Date activityDate = usersActivityMap.get(user.getId());
                 userView.active = (activityDate != null &&
