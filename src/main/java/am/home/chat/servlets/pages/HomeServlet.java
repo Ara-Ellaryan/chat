@@ -18,7 +18,7 @@ public class HomeServlet extends BasePagesServlet {
 
         try {
             User user = (User)req.getSession().getAttribute("user");
-            List<User> users = this.usersService.getAllUsers();
+            List<User> users = this.usersService.getAllContacts(user.getId());
             List<Message> messages = this.messagesService.getAllMessages(user.getId(), user.getId());
 
             req.setAttribute("users", users);

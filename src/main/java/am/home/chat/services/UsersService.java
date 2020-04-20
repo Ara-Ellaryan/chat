@@ -21,5 +21,7 @@ public interface UsersService {
 
     boolean userExist(String email) throws DatabaseException;
 
+    List<User> getAllContacts(int id) throws DatabaseException;
+
     List<User> getAllUsers() throws DatabaseException;
 }

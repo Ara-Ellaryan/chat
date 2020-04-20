@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class UsersDaoSql extends BaseSQL implements UsersDao {
+
     @Override
     public User insert(Connection connection, User user) throws SQLException {
         String query = "INSERT INTO users(name, surname, email, password, image_url) VALUES (?, ?, ?, ? , ?);";
@@ -116,6 +117,29 @@ public class UsersDaoSql extends BaseSQL implements UsersDao {
         }
 
         return usersList;
+    }
+
+    @Override
+    public List<User> fetchAllContacts(int id) throws SQLException {
+        String query = "SELECT DISTINCT t.* FROM (SELECT * FROM users WHERE users.id != ?) AS t INNER JOIN messages ON " +
+                "((messages.sender_id = ? and messages.receiver_id = t.id) or (messages.sender_id = t.id and messages.receiver_id = ?))" +
+                " ORDER BY messages.created_at DESC;";
+        List<User> contactList = new LinkedList<>();
+
+        try(Connection connection = this.connectionFactory.getConnection();
+        PreparedStatement statement = connection.prepareStatement(query)){
+            statement.setInt(1, id);
+            statement.setInt(2, id);
+            statement.setInt(3, id);
+
+            try(ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()){
+                    User user = createFromResult(resultSet);
+                    contactList.add(user);
+                }
+            }
+        }
+        return contactList;
     }
 
     private User createFromResult(ResultSet resultSet) throws SQLException {

@@ -25,8 +25,8 @@ public class UserListServlet extends BaseUserServlet {
                 usersActivityMap = (Map<Integer, Date>) req.getServletContext().getAttribute("users_activity");
             }
             resp.setContentType("application/json");
-
-            List<User> users = super.usersService.getAllUsers();
+            User currentUser = (User)req.getSession().getAttribute("user");
+            List<User> users = super.usersService.getAllContacts(currentUser.getId());
             List<UserView> userViewList = new ArrayList<>(users.size());
 
             for (User user : users) {

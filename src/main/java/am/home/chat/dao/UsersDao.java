@@ -19,5 +19,7 @@ public interface UsersDao {
 
     boolean userExist(String email) throws SQLException;
 
+    List<User> fetchAllContacts(int id) throws SQLException;
+
     List<User> fetchAll() throws SQLException;
 }

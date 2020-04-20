@@ -101,6 +101,15 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public List<User> getAllContacts(int id) throws DatabaseException {
+        try {
+            return this.usersDao.fetchAllContacts(id);
+        } catch (SQLException e) {
+            throw new DatabaseException(e);
+        }
+    }
+
+    @Override
     public List<User> getAllUsers() throws DatabaseException {
         try {
             return this.usersDao.fetchAll();

@@ -42,7 +42,10 @@
     <main class="main">
         <div class="main-wrapper">
             <aside class="aside">
-                <div class="current-user-block" onclick="loadMessages()">
+                <div class="current-user-block"
+                     onclick="loadMessages(<c:out value="${sessionScope.user.id}"/>,
+                             '<c:out value="${currentUserFullName}"/>',
+                             '<c:out value="${sessionScope.user.imageUrl}"/>')">
                     <div class="current-user-image">
                         <img class="profile-image" src="<c:out value="${sessionScope.user.imageUrl}"/>"
                              alt="<c:out value="${currentUserFullName}"/>">
@@ -56,13 +59,16 @@
                         <c:forEach items="${requestScope.users}" var="user">
                             <c:if test="${user.id != sessionScope.user.id}">
                                 <c:set var="userFullName" value="${user.name.concat(' ').concat(user.surname)}"/>
-                                <li class="contact" onclick="loadMessages()">
+                                <li class="contact"
+                                    onclick="loadMessages(<c:out value="${user.id}"/>,
+                                            '<c:out value="${userFullName}"/>',
+                                            '<c:out value="${user.imageUrl}"/>')">
                                     <div class="user-image">
                                         <img class="profile-image" src="<c:out value="${user.imageUrl}"/>"
                                              alt="<c:out value="${userFullName}"/>">
                                         <span class="user-activity contact-place <c:out value="${activeUsers[user.id] != null
-                                    && (System.currentTimeMillis() - activeUsers[user.id].time) < 15 * 60 * 1000
-                                    ? 'active' : 'passive'}"/>"></span>
+                                            && (System.currentTimeMillis() - activeUsers[user.id].time) < 15 * 60 * 1000
+                                            ? 'active' : 'passive'}"/>"></span>
                                     </div>
                                     <span class="user-name"><c:out value="${userFullName}"/></span>
                                 </li>
@@ -83,18 +89,26 @@
                     <div class="message-area">
                         <c:forEach var="message" items="${requestScope.messages}">
                             <c:set var="date" value="${message.createdAt}"/>
-                            <div class="message-text-wrapper <c:out value="${message.senderId == sessionScope.user.id ? 'sender' : 'receiver'}"/>">
-                                <span class="message-text"><c:out value="${message.message}"/></span>
-                                <br>
-                                <span class="time">
-                                    <c:out value="${Integer.toString(date.hours).concat(':').concat(Integer.toString(date.minutes)).
-                                    concat(' ').concat(Integer.toString(date.date)).concat('-').concat(Integer.toString(date.month))}"/>
+                            <c:set var="hour" value="${Integer.toString(date.hours)}"/>
+                            <c:set var="minutes" value="${Integer.toString(date.minutes)}"/>
+                            <c:set var="day" value="${Integer.toString(date.date)}"/>
+                            <c:set var="month" value="${(date.month + 1) > 9  ? Integer.toString(date.month + 1) :
+                                                                                '0'.concat(Integer.toString(date.month + 1))}"/>
+                            <div class="message-wrapper <c:out value="${message.senderId == sessionScope.user.id ? 'sender' : 'receiver'}"/>">
+                                <img src="<c:out value="${sessionScope.user.imageUrl}"/>">
+                                <div class="message-text-wrapper">
+                                    <span class="message-text"><c:out value="${message.message}"/></span>
+                                    <br>
+                                    <span class="time">
+                                    <c:out value="${hour.concat(':').concat(minutes).concat(' ').concat(day).concat('-').
+                                    concat(month)}"/>
                                 </span>
+                                </div>
                             </div>
                         </c:forEach>
                     </div>
                     <div class="message-box">
-                        <textarea name="message" id="message-box"></textarea>
+                        <textarea id="message-box" name="message" placeholder="type your message...." autofocus></textarea>
                         <button onclick="sendMessage()" id="button">Send</button>
                     </div>
                 </div>
