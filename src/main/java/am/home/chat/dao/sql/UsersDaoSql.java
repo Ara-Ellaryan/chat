@@ -121,9 +121,10 @@ public class UsersDaoSql extends BaseSQL implements UsersDao {
 
     @Override
     public List<User> fetchAllContacts(int id) throws SQLException {
-        String query = "SELECT DISTINCT t.* FROM (SELECT * FROM users WHERE users.id != ?) AS t INNER JOIN messages ON " +
-                "((messages.sender_id = ? and messages.receiver_id = t.id) or (messages.sender_id = t.id and messages.receiver_id = ?))" +
-                " ORDER BY messages.created_at DESC;";
+        String query = "SELECT DISTINCT t.* FROM (SELECT * FROM users WHERE users.id != ?) AS t INNER JOIN " +
+                "(SELECT * FROM messages ORDER BY messages.created_at DESC ) as m ON " +
+                "((m.sender_id = ? and m.receiver_id = t.id) or (m.sender_id = t.id and m.receiver_id = ?));";
+
         List<User> contactList = new LinkedList<>();
 
         try(Connection connection = this.connectionFactory.getConnection();
