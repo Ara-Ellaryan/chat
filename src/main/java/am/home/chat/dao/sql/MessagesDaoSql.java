@@ -2,18 +2,19 @@ package am.home.chat.dao.sql;
 
 import am.home.chat.dao.MessagesDao;
 import am.home.chat.models.Message;
+import am.home.chat.utils.db.DataSource;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MessagesDaoSql extends BaseSQL implements MessagesDao {
+public class MessagesDaoSql implements MessagesDao {
 
     @Override
     public Message insert(Message message) throws SQLException {
         String query = "INSERT INTO messages(sender_id, receiver_id, message) VALUES (?, ?, ?);";
 
-        try (Connection connection = this.connectionFactory.getConnection();
+        try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setInt(1, message.getSenderId());
@@ -37,7 +38,7 @@ public class MessagesDaoSql extends BaseSQL implements MessagesDao {
                 " OR (sender_id = ? AND receiver_id = ?) order by created_at;";
         List<Message> messagesList = new LinkedList<>();
 
-        try(Connection connection = this.connectionFactory.getConnection();
+        try(Connection connection = DataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setInt(1, senderId);

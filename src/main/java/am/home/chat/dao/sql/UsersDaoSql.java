@@ -2,19 +2,21 @@ package am.home.chat.dao.sql;
 
 import am.home.chat.dao.UsersDao;
 import am.home.chat.models.User;
+import am.home.chat.utils.db.DataSource;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-public class UsersDaoSql extends BaseSQL implements UsersDao {
+public class UsersDaoSql implements UsersDao {
 
     @Override
-    public User insert(Connection connection, User user) throws SQLException {
+    public User insert(User user) throws SQLException {
         String query = "INSERT INTO users(name, surname, email, password, image_url) VALUES (?, ?, ?, ? , ?);";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection connection = DataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getSurname());
@@ -37,7 +39,7 @@ public class UsersDaoSql extends BaseSQL implements UsersDao {
     public Optional<User> fetch(int id) throws SQLException {
         String query = "SELECT * FROM users WHERE id = ?;";
         User user = null;
-        try (Connection connection = this.connectionFactory.getConnection();
+        try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -54,7 +56,7 @@ public class UsersDaoSql extends BaseSQL implements UsersDao {
         String query = "SELECT * FROM users WHERE email = ? AND password = ?;";
         User user = null;
 
-        try (Connection connection = this.connectionFactory.getConnection();
+        try (Connection connection = DataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
@@ -74,7 +76,7 @@ public class UsersDaoSql extends BaseSQL implements UsersDao {
         String query = "SELECT * FROM users WHERE email = ?;";
         User user = null;
 
-        try(Connection connection = this.connectionFactory.getConnection();
+        try(Connection connection = DataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, email);
 
@@ -91,7 +93,7 @@ public class UsersDaoSql extends BaseSQL implements UsersDao {
     public boolean userExist(String email) throws SQLException {
         String query = "SELECT * FROM users WHERE email = ?;";
 
-        try(Connection connection = this.connectionFactory.getConnection();
+        try(Connection connection = DataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, email);
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -108,7 +110,7 @@ public class UsersDaoSql extends BaseSQL implements UsersDao {
         String query = "SELECT * FROM users";
         List<User> usersList = new LinkedList<>();
 
-        try(Connection connection = this.connectionFactory.getConnection();
+        try(Connection connection = DataSource.getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query)) {
             while (resultSet.next()){
@@ -127,7 +129,7 @@ public class UsersDaoSql extends BaseSQL implements UsersDao {
 
         List<User> contactList = new LinkedList<>();
 
-        try(Connection connection = this.connectionFactory.getConnection();
+        try(Connection connection = DataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(query)){
             statement.setInt(1, id);
             statement.setInt(2, id);

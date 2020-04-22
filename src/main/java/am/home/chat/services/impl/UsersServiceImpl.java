@@ -7,6 +7,7 @@ import am.home.chat.exceptions.FileUploadException;
 import am.home.chat.models.User;
 import am.home.chat.services.UsersService;
 import am.home.chat.utils.db.ConnectionFactory;
+import am.home.chat.utils.db.DataSource;
 
 import java.io.*;
 import java.sql.Connection;
@@ -18,7 +19,7 @@ import java.util.UUID;
 public class UsersServiceImpl implements UsersService {
     private UsersDao usersDao;
 
-    public UsersServiceImpl(){
+    public UsersServiceImpl() {
         this.usersDao = new UsersDaoSql();
     }
 
@@ -27,16 +28,17 @@ public class UsersServiceImpl implements UsersService {
         String imageName = UUID.nameUUIDFromBytes(user.getEmail().getBytes()).toString();
         String path = UsersServiceImpl.class.getClassLoader().getResource("../../images").getFile() + imageName;
 
-        try(Connection connection = ConnectionFactory.getInstance().getConnection(false)) {
-            if(imageContent != null){
-                try(OutputStream outputStream = new FileOutputStream(path)) {
+        try {
+            if (imageContent != null) {
+                try (OutputStream outputStream = new FileOutputStream(path)) {
 
                     byte[] buffer = new byte[2048];
                     int readCount;
 
-                    while ((readCount = imageContent.read(buffer)) > -1){
+                    while ((readCount = imageContent.read(buffer)) > -1) {
                         outputStream.write(buffer, 0, readCount);
                     }
+
                     user.setImageUrl("/images/" + imageName);
 
                 } catch (IOException e) {
@@ -45,19 +47,11 @@ public class UsersServiceImpl implements UsersService {
             } else {
                 user.setImageUrl("/images/incognito.png");
             }
-
-            try {
-               user = this.usersDao.insert(connection, user);
-               connection.commit();
-            } catch (SQLException e){
-                connection.rollback();
-                throw e;
-            }
-
-            return user;
+                user = this.usersDao.insert(user);
+                return user;
 
         } catch (SQLException e) {
-            if(user.getId() > 0){
+            if (user.getId() > 0) {
                 new File(path).delete();
             }
             throw new DatabaseException(e);

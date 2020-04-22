@@ -2,14 +2,13 @@ package am.home.chat.dao;
 
 import am.home.chat.models.User;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 public interface UsersDao {
 
-    User insert(Connection connection, User user) throws SQLException;
+    User insert(User user) throws SQLException;
 
     Optional<User> fetch(int id) throws SQLException;
 
