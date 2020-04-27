@@ -139,10 +139,10 @@ function fillChatArea(messageContent, receiverName, receiverImg) {
 
 }
 
-function messageTemplate(massage, receiverImg, time, classValue) {
+function messageTemplate(massage, imgUrl, time, classValue) {
 
     let template = '<div class="message-wrapper ' + classValue + '">' +
-        '<img src="' + receiverImg + '"/>' +
+        '<img src="' + imgUrl + '"/>' +
         '<div class="message-text-wrapper">' +
         '<span class="message-text">' + massage + '</span> <br>' +
         '<span class="time">' + DateAndTime(time) + '</span>' +
