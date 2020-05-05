@@ -48,7 +48,7 @@
                              '<c:out value="${sessionScope.user.imageUrl}"/>')">
                     <div class="current-user-image">
                         <img class="profile-image" src="<c:out value="${sessionScope.user.imageUrl}"/>"
-                             alt="<c:out value="${currentUserFullName}"/>">
+                             alt="<c:out value="${currentUserFullName}"/>"/>
                         <span class="user-activity current-place active"></span>
                     </div>
                     <span class="current-user-name"><c:out value="${currentUserFullName}"/></span>
@@ -95,7 +95,7 @@
                             <c:set var="month" value="${(date.month + 1) > 9  ? Integer.toString(date.month + 1) :
                                                                                 '0'.concat(Integer.toString(date.month + 1))}"/>
                             <div class="message-wrapper <c:out value="${message.senderId == sessionScope.user.id ? 'sender' : 'receiver'}"/>">
-                                <img src="<c:out value="${sessionScope.user.imageUrl}"/>">
+                                <img class="message-text-image" src="<c:out value="${sessionScope.user.imageUrl}"/>">
                                 <div class="message-text-wrapper">
                                     <span class="message-text"><c:out value="${message.message}"/></span>
                                     <br>

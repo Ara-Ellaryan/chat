@@ -8,6 +8,7 @@ import am.home.chat.models.User;
 import am.home.chat.services.UsersService;
 import am.home.chat.utils.db.ConnectionFactory;
 import am.home.chat.utils.db.DataSource;
+import am.home.chat.utils.db.Settings;
 
 import java.io.*;
 import java.sql.Connection;
@@ -27,10 +28,11 @@ public class UsersServiceImpl implements UsersService {
     public User add(User user, InputStream imageContent) throws DatabaseException, FileUploadException {
         String imageName = UUID.nameUUIDFromBytes(user.getEmail().getBytes()).toString();
         String path = UsersServiceImpl.class.getClassLoader().getResource("../../images").getFile() + imageName;
+        String imagePath = Settings.getInstance().getString("image.dir") + imageName;
 
         try {
             if (imageContent != null) {
-                try (OutputStream outputStream = new FileOutputStream(path)) {
+                try (OutputStream outputStream = new FileOutputStream(imagePath)) {
 
                     byte[] buffer = new byte[2048];
                     int readCount;
@@ -52,7 +54,7 @@ public class UsersServiceImpl implements UsersService {
 
         } catch (SQLException e) {
             if (user.getId() > 0) {
-                new File(path).delete();
+                new File(imagePath).delete();
             }
             throw new DatabaseException(e);
         }
