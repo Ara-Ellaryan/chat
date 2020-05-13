@@ -76,6 +76,10 @@
                         </c:forEach>
                     </ul>
                 </div>
+                <div id="contact-download">
+                    <div class="list-download"><a href="/users/download?type=xlsx">list by excel</a></div>
+                    <div class="list-download"><a href="/users/download">list by csv</a></div>
+                </div>
             </aside>
             <section class="section">
                 <div class="chat-contact">

@@ -47,6 +47,7 @@ public class UserListServlet extends BaseUserServlet {
             }
         } catch (DatabaseException e) {
             e.printStackTrace();
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -152,7 +152,7 @@ public class UsersDaoSql implements UsersDao {
         user.setName(resultSet.getString("name"));
         user.setSurname(resultSet.getString("surname"));
         user.setEmail(resultSet.getString("email"));
-        user.setPassword(resultSet.getString("password"));
+//        user.setPassword(resultSet.getString("password"));
         user.setImageUrl(resultSet.getString("image_url"));
 
         return user;
