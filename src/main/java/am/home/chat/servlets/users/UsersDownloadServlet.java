@@ -38,7 +38,7 @@ public class UsersDownloadServlet extends BaseUserServlet {
 
             if ("xlsx".equalsIgnoreCase(type)) {
                 resp.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-                resp.setHeader("Content-Disposition", "attachment; filename=users.xlsx");
+                resp.setHeader("Content-Disposition", "attachment; filename=" + currentUser.getName() + "_" + currentUser.getSurname() + "_contacts.xlsx");
 
                 try (ByteArrayOutputStream out = new ByteArrayOutputStream();
                      OutputStream clientWrite = resp.getOutputStream();
